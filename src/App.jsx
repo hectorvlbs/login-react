@@ -4,12 +4,14 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import Nav from './Html/Nav.jsx';
+
 
 function App() {
   return (
     <Router>
       <div className="container">
-        navbar...
+        <Nav />
         <Switch>
           <Route path="/" exact>
             home...    
