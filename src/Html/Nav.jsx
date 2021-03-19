@@ -7,7 +7,7 @@ import {
 
 const Nav = () => {
     return (
-        <div className="navbar navbar-dark bg-dark">
+        <div className="navbar navbar-dark bg-dark mt-1">
             <Link className="navbar-brand" to="/">JesHec</Link>
             <div>
                 <div className="d-flex">
