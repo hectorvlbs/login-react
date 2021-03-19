@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
   BrowserRouter as Router,
-  Switch,
-  Route
 } from 'react-router-dom'
+import Swh from './Components/Swh.jsx';
 import Nav from './Html/Nav.jsx';
 
 
@@ -11,21 +10,11 @@ function App() {
   return (
     <Router>
       <div className="container">
+
         <Nav />
-        <Switch>
-          <Route path="/" exact>
-            home...    
-          </Route>
 
-          <Route path="/login">
-            login...
-          </Route>
-
-          <Route path="/admin">
-            admin...
-          </Route>
-        </Switch>
-
+        <Swh />
+        
       </div>
     </Router>
   );
