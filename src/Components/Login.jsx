@@ -6,6 +6,7 @@ const Login = () => {
     const [email, setEmail] = React.useState('')
     const [pass, setPass] = React.useState('')
     const [error, setError] = React.useState(null)
+    const [signup, setSingup] = React.useState(true)
 
     const dataProcess = e => {
         e.preventDefault()
@@ -25,7 +26,11 @@ const Login = () => {
 
     return (
         <div className="mt-5">
-            <h3 className="text-center">Acceso o registro</h3>
+            <h3 className="text-center">
+                {
+                    signup ? 'Registro' : 'Acceder'
+                }
+            </h3>
             <hr/>
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-8 col-md-6 col-xl-4">
@@ -44,8 +49,13 @@ const Login = () => {
                             onChange={e => setPass(e.target.value)}
                             value={pass}
                         />
-                        <button className="btn btn-dark btn-lg btn-block">
-                            Registrarse
+                        <button 
+                            className="btn btn-dark btn-lg btn-block"
+                            type="submit"    
+                        >
+                            {
+                                signup ? 'Registrase' : 'Acceder'
+                            }
                         </button>
                         {
                             error && (
@@ -54,8 +64,14 @@ const Login = () => {
                                 </div>
                             )
                         }
-                        <button className="btn btn-info btn-sn btn-block">
-                            ¿Ya tienes cuenta?
+                        <button
+                            className="btn btn-info btn-sn btn-block"
+                            onClick={() => setSingup(!signup)}
+                            type="button"
+                        >
+                            {
+                                signup ? '¿Ya estás registrado?' : '¿No tienes cuenta?'
+                            }
                         </button>
                     </form>
                 </div>
