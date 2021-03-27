@@ -5,20 +5,21 @@ const Login = () => {
     const passLength = 6
     const [email, setEmail] = React.useState('')
     const [pass, setPass] = React.useState('')
+    const [error, setError] = React.useState(null)
 
     const dataProcess = e => {
         e.preventDefault()
         if (!email.trim()) {
-            console.log('ingrese email')
+            setError('Ingrese email valido.')
             return
         } else if (!pass.trim()) {
-            console.log('Ingrese pass')
+            setError('Ingrese la contraseña.')
             return
         } else if (pass.length < passLength) {
-            console.log(`pass need ${passLength} chars`)
+            setError('La contraseña debe contener por lo menos 6 carácteres.')
             return
         } else {
-            console.log(`email: ${email}, pass: ${pass}`)
+            setError(null)
         }
     }
 
@@ -46,6 +47,13 @@ const Login = () => {
                         <button className="btn btn-dark btn-lg btn-block">
                             Registrarse
                         </button>
+                        {
+                            error && (
+                                <div className="alert alert-danger mt-3 text-center">
+                                    {error}
+                                </div>
+                            )
+                        }
                         <button className="btn btn-info btn-sn btn-block">
                             ¿Ya tienes cuenta?
                         </button>
