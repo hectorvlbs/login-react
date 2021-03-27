@@ -34,9 +34,10 @@ const Login = () => {
             const res = await auth.createUserWithEmailAndPassword(email, pass)
             console.log(res)
         } catch (error) {
-            console.log(error)
             if (error.code === 'auth/invalid-email') {
                 setError('Email no valido.')
+            } else if (error.code === 'auth/email-already-in-use') {
+                setError('El email se encuentra en uso.')
             }
         }
     }, [email, pass])
