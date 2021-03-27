@@ -1,4 +1,5 @@
 import React from 'react'
+import {auth} from '../Firebase/Firebase'
 
 const Login = () => {
 
@@ -19,10 +20,26 @@ const Login = () => {
         } else if (pass.length < passLength) {
             setError('La contraseña debe contener por lo menos 6 carácteres.')
             return
-        } else {
-            setError(null)
+        } 
+        console.log('Correcto...')
+        setError(null)
+
+        if (signup) {
+            new_register()
         }
     }
+
+    const new_register = React.useCallback(async() =>{
+        try {
+            const res = await auth.createUserWithEmailAndPassword(email, pass)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+            if (error.code === 'auth/invalid-email') {
+                setError('Email no valido.')
+            }
+        }
+    }, [email, pass])
 
     return (
         <div className="mt-5">
