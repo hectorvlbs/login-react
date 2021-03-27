@@ -1,5 +1,5 @@
 import React from 'react'
-import {auth} from '../Firebase/Firebase'
+import {auth, db} from '../Firebase/Firebase'
 
 const Login = () => {
 
@@ -32,7 +32,13 @@ const Login = () => {
     const new_register = React.useCallback(async() =>{
         try {
             const res = await auth.createUserWithEmailAndPassword(email, pass)
-            console.log(res)
+            await db.collection('users').doc(res.user.uid).set({
+                uid: res.user.uid,
+                email: res.user.email
+            })
+            setEmail('')
+            setPass('')
+            setError(null)
         } catch (error) {
             if (error.code === 'auth/invalid-email') {
                 setError('Email no valido.')
